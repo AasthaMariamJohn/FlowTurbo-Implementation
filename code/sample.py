@@ -19,7 +19,7 @@ image_size = "256"
 
 refiner_ckpt = 'SiT-XL-2-Refiner.pt'
 predictor_ckpt = 'SiT-XL-2-256x256.pt'
-vae_ckpt = "vae-ema"
+vae_ckpt = "stabilityai/sd-vae-ft-ema"
 
 
 latent_size = int(image_size) // 8
