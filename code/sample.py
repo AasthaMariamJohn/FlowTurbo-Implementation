@@ -14,7 +14,7 @@ if device == "cpu":
 
 
 cfg_scale = 4
-class_labels = [207, 980, 387, 974, 88, 972, 928, 279]
+class_labels = [207, 360, 387, 974, 88, 979, 417, 279]
 image_size = "256"
 
 refiner_ckpt = 'SiT-XL-2-Refiner.pt'
