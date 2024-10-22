@@ -2,14 +2,11 @@ FlowTurbo-Implementation
 
 Implementation of the paper "FlowTurbo: Towards Real-time Flow-Based Image Generation with Velocity Refiner"
 By Wenliang Zhao, Minglei Shi, Xumin Yu, Jie Zhou, Jiwen Lu
-For the IPR course project, we have re-implemented the techniques described in the paper and verified their effectiveness on image generation tasks.
+For the IPR course project, I have attempted to implement the codes given in their paper and observed the results.
 
-Project Overview
+FlowTurbo is designed to accelerate flow-based generative models using a new velocity refiner technique. By optimizing the sampling process, the paper claims that FlowTurbo achieves both significant acceleration and high-quality image generation.
 
-FlowTurbo is designed to accelerate flow-based generative models using a novel velocity refiner technique. By optimizing the sampling process, FlowTurbo achieves both significant acceleration and high-quality image generation.
-
-In our implementation, we observed an acceleration ratio of 51.67% to 55% compared to the original Heun's method, and a FID score of 3.54 on class-conditional image generation tasks. These results are close to the paper's reported acceleration ratio of 53.1% to 58.3% and a FID of 2.11 on ImageNet (256x256) with 100 ms/img  FID of 3.93 with 38 (ms / img).
-Key Results
+This implementation achieved an acceleration ratio of 51.67% to 55% , and a FID score of 3.54 on class-conditional image generation tasks. These results are close to the paper's reported acceleration ratio of 53.1% to 58.3% and a FID of 2.11 on ImageNet (256x256) with 100 ms/img  FID of 3.93 with 38 (ms / img).
 
 Below are some example images generated using FlowTurbo from our implementation:
 
