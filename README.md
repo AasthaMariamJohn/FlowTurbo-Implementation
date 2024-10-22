@@ -17,9 +17,8 @@ Below are some example images generated using FlowTurbo from our implementation:
 
 ![image](https://github.com/user-attachments/assets/a9701128-87cd-4f53-8c4f-e6ce0aa740b3)
 
-How to Run the Code
-
 For a step-by-step walkthrough to run this implementation, refer to the link to instructions below.
+
 https://colab.research.google.com/drive/1d3eIHNEI_TuifnnCgueJpgNL2uoiHmRO?usp=sharing
 
 This guide will walk you through:
