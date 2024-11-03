@@ -38,7 +38,7 @@ def calculate_fid(image1_path, image2_path):
 image1_path = '/content/FlowTurbo-Implementation/code/sample.png'
 image2_path = '/content/FlowTurbo-Implementation/code/sample_N_H1N_P5N_R3SACFalse.png'
 fid_score = calculate_fid(image1_path, image2_path)/60
-print(f'FID score between the two images: {fid_score}')
+print(f'FID score: {fid_score}')
 
 
 
