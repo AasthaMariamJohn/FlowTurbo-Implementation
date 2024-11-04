@@ -168,3 +168,83 @@ class Sampler:
         )
         
         return _ode.sample
+class Adpt_Sampler:
+    def __init__(self, model, atol=1e-6, rtol=1e-3, max_steps=1000):
+        """
+        Adaptive Sampler class for implementing adaptive step size sampling.
+        
+        Parameters:
+        - model: The model being used for velocity prediction.
+        - atol: Absolute tolerance for adaptive step control.
+        - rtol: Relative tolerance for adaptive step control.
+        - max_steps: Maximum number of sampling steps.
+        """
+        self.model = model
+        self.atol = atol
+        self.rtol = rtol
+        self.max_steps = max_steps
+    
+    def adaptive_step(self, x, t, delta_t, velocity_predictor):
+        """
+        Calculates the next sample with an adaptive step.
+        
+        Parameters:
+        - x: Current sample.
+        - t: Current time step.
+        - delta_t: Proposed step size.
+        - velocity_predictor: Function that predicts velocity at the current step.
+        
+        Returns:
+        - x_next: Next sample after the adaptive step.
+        - delta_t_next: Adjusted step size for the next iteration.
+        """
+        # Predict velocities at current step and halfway
+        v1 = velocity_predictor(x, t)
+        x_mid = x + 0.5 * delta_t * v1
+        v2 = velocity_predictor(x_mid, t + 0.5 * delta_t)
+
+        # Calculate the next sample
+        x_next = x + delta_t * v2
+
+        # Error estimate for adaptive step size adjustment
+        error_estimate = torch.norm(v1 - v2)
+        
+        # Adjust delta_t based on error estimate
+        if error_estimate > self.atol + self.rtol * torch.norm(x):
+            # Decrease delta_t if error too large
+            delta_t_next = delta_t * 0.9 * (self.atol / error_estimate).sqrt()
+        else:
+            # Increase delta_t if error is small
+            delta_t_next = delta_t * 1.2
+
+        # Limit delta_t_next to prevent excessive step size
+        delta_t_next = min(delta_t_next, delta_t * 1.5)
+        
+        return x_next, delta_t_next
+
+    def sample(self, x_init, t_final, velocity_predictor):
+        """
+        Perform adaptive sampling starting from x_init until time t_final.
+        
+        Parameters:
+        - x_init: Initial sample.
+        - t_final: Final time for sampling.
+        - velocity_predictor: Function that predicts velocity at the current step.
+        
+        Returns:
+        - samples: Collected samples throughout the adaptive sampling.
+        """
+        samples = [x_init]
+        t = 0
+        delta_t = (t_final - t) / self.max_steps
+        x = x_init
+        
+        # Run sampling loop with adaptive step control
+        for _ in range(self.max_steps):
+            if t >= t_final:
+                break
+            x, delta_t = self.adaptive_step(x, t, delta_t, velocity_predictor)
+            samples.append(x)
+            t += delta_t
+        
+        return samples
