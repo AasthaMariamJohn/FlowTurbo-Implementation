@@ -12,7 +12,6 @@ Below are some example images generated using FlowTurbo from our implementation:
 
 ![image](https://github.com/user-attachments/assets/c236b4c0-70a2-44fb-aa12-9a591001dc4d)
 
-
 ![image](https://github.com/user-attachments/assets/f9f3f3f3-a4e1-4d4d-bc06-593a7b0dcd94)
 
 ![image](https://github.com/user-attachments/assets/a9701128-87cd-4f53-8c4f-e6ce0aa740b3)
@@ -30,7 +29,29 @@ This guide will walk you through:
 
 FlowTurbo-Implementation-Improvement (Part 2)
 
+Building on the initial implementation of FlowTurbo, I introduced enhancements aimed at further optimizing image generation speed and quality. Specifically, this update implements adaptive sampling and a refined MSE-based VAE model.
 
+The adaptive sampling modification dynamically adjusts the sampling rate based on image complexity, reducing step sizes in high-gradient areas for greater precision. Meanwhile, replacing the original EMA-based VAE with an MSE-based VAE enhances image fidelity by focusing on pixel-wise error reduction, potentially yielding sharper reconstructions.
+Results:
+
+This improved implementation achieved an acceleration ratio of 62.5% to 66% and an FID score of 3.09, outperforming the initial implementation's 51.67% to 55% acceleration and FID score of 3.93. Despite minor reductions in recall and precision, these modifications demonstrate a significant speed boost while maintaining high image quality.
+
+Below are some example images generated using FlowTurbo from our implementation:
+
+![image](https://github.com/user-attachments/assets/76550e1e-a8f0-4038-beb9-843d0533c9ca)
+
+![image](https://github.com/user-attachments/assets/b6cc6f85-b93e-4c39-8c24-5c970fb3246c)
+
+![image](https://github.com/user-attachments/assets/89e83826-6cca-4e1b-a0e4-416d7f16f51c)
+
+For a step-by-step walkthrough of the improvements, including setup, training, and evaluation, refer the Colab notebook here: https://colab.research.google.com/drive/1i2VJF7WTk9EhzyNmnD995FdkYXILLwp1?usp=sharing
+
+This guide will walk you through:
+
+    Setting up - Cloning the required datasets and codes
+    Installation - Dependencies and environment setup.
+    Training - How to train and sample the refiner.
+    Inference and evaluation - Running the model to generate new images.
 
 Acknowledgments
 
