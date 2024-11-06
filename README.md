@@ -1,4 +1,4 @@
-FlowTurbo-Implementation
+FlowTurbo-Implementation (Part 1)
 
 Implementation of the paper "FlowTurbo: Towards Real-time Flow-Based Image Generation with Velocity Refiner"
 By Wenliang Zhao, Minglei Shi, Xumin Yu, Jie Zhou, Jiwen Lu
@@ -27,6 +27,10 @@ This guide will walk you through:
     Installation - Dependencies and environment setup.
     Training - How to train and sample the refiner.
     Inference and evaluation - Running the model to generate new images.
+
+FlowTurbo-Implementation-Improvement (Part 2)
+
+
 
 Acknowledgments
 
